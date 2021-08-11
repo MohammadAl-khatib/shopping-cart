@@ -63,11 +63,15 @@ function showCart() {
 }
 
 function removeItemFromCart(event) {
-
   // TODO: When a delete link is clicked, use cart.removeItem to remove the correct item
+  if(event.target.id !== 'cart'){
+  cart.removeItem(cart.items[td1El.id]);
   // TODO: Save the cart back to local storage
+  cart.saveToLocalStorage();
   // TODO: Re-draw the cart table
-
+  renderCart();
+  
+  }
 }
 
 // This will initialize the page and draw the cart on screen

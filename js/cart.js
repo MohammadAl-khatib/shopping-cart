@@ -10,13 +10,7 @@ function loadCart() {
   const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
   cart = new Cart(cartItems);
 
-  for (let i = 0; i < cartItems.length; i++) {
-    cart.push(new CartItem)
 
-    cartItems.items[i].product
-    cartItems.items[i].quantity
-
-}
 
 }
 

@@ -41,14 +41,15 @@ function addSelectedItemToCart(event) {
   // TODO: get the quantity
   let quantity = event.target.quantity.value;
   // TODO: using those, add one item to the Cart
-  let newCartItem = new CartItem (item,quantity);
+  // let newCartItem = new CartItem (item,quantity);
+  cart.addItem (item,quantity);
 }
 
 // TODO: Update the cart count in the header nav with the number of items in the Cart
 function updateCounter() {
   let sectionElement = document.getElementById('itemCount');
-  let save = localStorage.cart;
-  console.log(save);
+  let save = JSON.parse(localStorage.cart);
+  console.log(typeof (save));
   sectionElement.textContent = 'Items: ' + save.length
  }
 

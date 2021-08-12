@@ -1,7 +1,9 @@
 /* global Product, Cart */
 
 'use strict';
-
+let inq = document.getElementById('cartContents');
+let ulElement = document.createElement('ul');
+inq.appendChild(ulElement);
 // Set up an empty cart for use on this page.
 const cart = new Cart([]);
 
@@ -12,9 +14,9 @@ function populateForm() {
   //TODO: Add an <option> tag inside the form's select for each product
   const selectElement = document.getElementById('items');
   for (let i in Product.allProducts) {
-     let optionElement = document.createElement('option')
-     selectElement.appendChild (optionElement);
-     optionElement.textContent = Product.allProducts[i].name;
+    let optionElement = document.createElement('option')
+    selectElement.appendChild(optionElement);
+    optionElement.textContent = Product.allProducts[i].name;
   }
 
 }
@@ -37,11 +39,11 @@ function handleSubmit(event) {
 // TODO: Add the selected item and quantity to the cart
 function addSelectedItemToCart(event) {
   // TODO: suss out the item picked from the select list
-  let item =event.target.items.value;
+  let item = event.target.items.value;
   // TODO: get the quantity
   let quantity = event.target.quantity.value;
   // TODO: using those, add one item to the Cart
-  cart.addItem (item,quantity);
+  cart.addItem(item, quantity);
 }
 
 // TODO: Update the cart count in the header nav with the number of items in the Cart
@@ -49,21 +51,16 @@ function updateCounter() {
   let sectionElement = document.getElementById('itemCount');
   let save = JSON.parse(localStorage.cart);
   sectionElement.textContent = 'Items: ' + save.length
- }
+}
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {
   // TODO: Get the item and quantity from the form
-  let inq = document.getElementById('cartContents');
-  let ulElement = document.createElement('ul');
-  inq.appendChild(ulElement);
-  let ilElement = document.createElement('li');
-  for (let i = 0; i < cart.items.length; i++) {
-
   // TODO: Add a new element to the cartContents div with that information
-  ilElement.textContent = cart.items[i].quantity +' : ' + cart.items[i].product;
-  ulElement.appendChild(ilElement);
-}
+  let liElement = document.createElement('li');
+  liElement.textContent = cart.items[cart.items.length-1].quantity + ' : ' + cart.items[cart.items.length-1].product;
+  ulElement.appendChild(liElement);
+
 }
 
 // Set up the "submit" event listener on the form.
